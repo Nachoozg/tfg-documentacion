@@ -1,0 +1,61 @@
+\capitulo{3}{Conceptos teóricos}
+
+
+\section{Liga de tenis}
+En el mundo del tenis normalmente las competiciones que hay son torneos de corta duración en los que cada jugador va pasando por diferentes fases y eliminatorias hasta llegar a la final y tener opción a ganarla, pero en ese tipo de torneos se suele competir representando a la misma persona, es decir, cada jugador compite por él mismo y no por un equipo.
+
+En este caso el planteamiento es algo diferente ya que la forma de competir será diferente a la clásica que se lleva a cabo en el tenis más profesional. Como es una liga entre colegios, su duración vendrá dada por el calendario escolar y no será en forma de torneo con una duración más corta. En esta liga se podrán inscribir los colegios que lo soliciten, pudiendo después cada uno de ellos inscribir a los jugadores que quieran. Los colegios competirán durante toda la temporada por ver cual es el que más puntos logra conseguir, asignando para cada partido el jugador que cada colegio elija.
+
+Esta forma de plantear la competición permite que al jugar muchos partidos, jueguen muchos jugadores diferentes entre ellos y que aunque se enfrenten en un partido los mismos colegios que se enfrentaron en otro partido anterior, el resultado pueda ser muy diferente al poder ser otros jugadores los que se enfrenten en representación de ese colegio.
+
+En una liga de tenis como esta, tenemos una competición en la que se inscriben colegios y juegan partidos entre ellos, aportando la victoria de un partido 2 puntos para la clasificación y la derrota 1 punto, al ser tenis, no existe el empate y por tanto se puntuará de esta manera.
+
+\section{CRUD}
+En el ámbito de la programación un CRUD es un acrónimo que agrupa las cuatro operaciones básicas que son necesarias para gestionar y manejar datos en una aplicación:
+
+\subsection{Create (Crear)}
+Consiste en la inserción de nuevos registros o nuevos datos en una base de datos. Por ejemplo, dar de alta un usuario o meter un partido nuevo.
+
+\subsection{Read (Leer)}
+Consiste en la consulta de los datos ya existentes en la base de datos. Permite mostrar listados con datos, detalles o resultados de búsquedas sin modificar la información original. Por ejemplo, consultar la lista de partidos guardados.
+
+\subsection{Update (Actualizar)}
+Consiste en hacer modificaciones de registros o datos ya existentes. Se utiliza para corregir, completar o cambiar valores. Por ejemplo, actualizar la fecha de un partido guardado.
+
+\subsection{Delete (Eliminar)}
+Consiste en borrar registros o datos que ya no son necesarios. Implica borrar los datos de la base de datos. Por ejemplo, borrar un partido que finalmente no se jugará.
+
+
+Cada operación de un CRUD se puede traducir como sentencias a nivel de base de datos.
+Por ejemplo INSERT para Create, SELECT para Read, UPDATE para Update, DELETE para Delete.
+ 
+
+
+\section{API}
+El concepto de API (Application Programming Interfaces) o Interfaz de Programación de Aplicaciones engloba las funciones, herramientas, reglas y endpoints que nos permiten tener una comunicación directa para poder extraer información o datos, además de funcionalidades interesantes.
+
+Las APIs son muy necesarias para proyectos como este que tienen un CRUD. Las APIs exponen puntos de entrada (endpoints) que permiten ejecutar operaciones CRUD de forma controlada desde puntos externos a la API (en este caso desde la interfaz de la página web). El funcionamiento consiste en asignar a cada endpoint una operacion CRUD de forma clara. Por ejemplo POST /usuarios para Create, GET /usuarios/{id} para Read, PUT /usuarios/{id} para Update, DELETE /usuarios/{id} para Delete.
+
+Las APIs pueden ser abiertas, que son APIs de código abierto que permiten obtener datos gratuitos. Pueden ser internas o propias, creadas por un usuario (como en este caso, creadas por mí) Pueden ser de pago, que necesitan que un usuario pague una suscripción para poder sacar datos y usar los endpoints o funcionalidades.
+
+
+\section{Endpoints}
+Los endpoints son los puntos de acceso que se definen dentro de una API y que permiten la comunicación entre aplicaciones. Cada uno de los endpoints corresponden a una URL en específico y tienen asociada una determinada operación como puede ser la obtención de datos, creación de algún recurso o herramienta o actualización de la información. Estos endpoints actúan como puertas de acceso, recibiendo solicitudes del cliente y devolviendo respuestas. Lo más normal es combinarlos con métodos HTTP como son GET, POST, PUT y DELETE para así identificar la acción que se desea realizar.
+
+
+\section{Métodos HTTP}
+Los métodos http son las acciones que van a indicar al servidor que tipo de operacion se quiere realizar sobre un determinado recurso cuando se crea una solicitud a través de una API. Los métodos más comunes y los que se manejan en la aplicación creada son:
+\subsection{GET}
+Solicita datos sin modificarlos.
+
+\subsection{POST}
+Crea un nuevo dato o un nuevo recurso.
+
+\subsection{PUT}
+Actualiza un dato o recurso que ya existe.
+
+\subsection{DELETE}
+Elimina un dato o recurso que ya existe.
+
+Existen otros métodos como el OPTIONS o el PATCH que sirven para consultar capacidades de un endpoint
+y para hacer actualizaciones parciales respectivamente.
