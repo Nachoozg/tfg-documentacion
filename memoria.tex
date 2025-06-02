@@ -17,8 +17,14 @@
 % Links
 \PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks]{hyperref}
 \hypersetup{
-	allcolors = {red}
+	allcolors = {blue}
 }
+
+\usepackage[
+  backend=biber,
+  style=numeric
+]{biblatex}
+\addbibresource{bibliografia.bib}
 
 % Ecuaciones
 \usepackage{amsmath}
@@ -33,7 +39,6 @@
 \widowpenalty100000
 \clubpenalty100000
 
-% Imágenes
 
 % Comando para insertar una imagen en un lugar concreto.
 % Los parámetros son:
@@ -285,7 +290,7 @@
 
 
 
-\graphicspath{ {./img/} }
+\graphicspath{ {img/} }
 
 % Capítulos
 \chapterstyle{bianchi}
@@ -378,7 +383,7 @@
 
 \noindent Expone:
 
-\noindent Que el alumno D. \nombre, con DNI 71707258C, ha realizado el Trabajo final de Grado en Ingeniería Informática titulado título de TFG. 
+\noindent Que el alumno D. \nombre, con DNI 71707258C, ha realizado el Trabajo final de Grado en Ingeniería Informática titulado Liga de Tenis de los Colegios de Burgos. 
 
 \noindent Y que dicho trabajo ha sido realizado por el alumno bajo la dirección del que suscribe, en virtud de lo cual se autoriza su presentación y defensa.
 
@@ -422,14 +427,17 @@ D. nombre co-tutor
 % Abstract en castellano
 \renewcommand*\abstractname{Resumen}
 \begin{abstract}
-Este proyecto consiste en el desarrollo de una aplicación web dedicada a una liga de tenis para los colegios de Burgos, la cual permite tener un CRUD (Create, Read, Update, Delete -- Crear, Leer, Actualizar y Borrar) y ver información relevante sobre la liga (Calendario, clasificación, jugadores, colegios, partidos) actualizando datos y teniéndolos guardados en base de datos a través de APIs creadas por mí. Además, se muestran mapas con ubicaciones marcadas donde se van a jugar los partidos utilizando Leaflet y OpenStreetMap. También se predicen los resultados de los partidos que se jugarán más adelante basándose en resultados anteriores y estadísticas que se sacan del jugador que representará al colegio, esto se hace con la integración de otra API externa, la de Google AI Studio, que además de lo anterior, permite chatear con el bot para preguntarle información relevante sobre la liga.
+Este proyecto consiste en el desarrollo de una aplicación web dedicada a una liga de tenis para los colegios de Burgos, la cual permite tener un CRUD (Create, Read, Update, Delete -- Crear, Leer, Actualizar y Borrar) y ver información relevante sobre la liga (Calendario, clasificación, jugadores, colegios, partidos) actualizando datos y teniéndolos guardados en base de datos a través de APIs creadas por mí. Además, se muestran mapas con ubicaciones marcadas donde se van a jugar los partidos utilizando Leaflet y OpenStreetMap. 
+
+También se predicen los resultados de los partidos que se jugarán más adelante basándose en resultados anteriores y estadísticas que se sacan del jugador que representará al colegio, esto se hace con la integración de otra API externa, la de Google AI Studio, que además de lo anterior, permite chatear con el bot para preguntarle información relevante sobre la liga.
+
 Esta aplicación web está desarrollada en fullstack, es decir, hay un front-end hecho en Angular, que incluye HTML, CSS y TypeScript y un back-end que está hecho con .NET para crear las APIs y poder actualizar la información en las tablas de la base de datos hecha con HeidiSQL utilizando los servicios de MySQL.
 
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
 \begin{abstract}
-Liga de tenis, aplicación Web, tenis, Angular, .NET, bases de datos, estadísticas, CRUD, APIs propias, APIs externas, mapas, predicción de resultados, uso de ia de google ai studio integrada en la web, navegación por maps, \ldots
+Liga de tenis, aplicación Web, Angular, .NET, bases de datos, estadísticas, CRUD, APIs, mapas, predicción, google ai, \ldots
 \end{abstract}
 
 \clearpage
@@ -446,7 +454,7 @@ On the front end, the app is built with Angular (HTML, CSS and TypeScript), whil
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-Tennis league, web application, tennis, Angular, .NET, databases, statistics, CRUD, own APIs, external APIs, maps, result prediction, ai usage integrated with the web, maps navigation, \ldots
+Tennis league, web application, Angular, .NET, databases, statistics, CRUD, APIs, maps, predictions, ai usage integrated with the web, \ldots
 \end{abstract}
 
 \clearpage
@@ -473,7 +481,5 @@ Tennis league, web application, tennis, Angular, .NET, databases, statistics, CR
 \include{./tex/7_Conclusiones_Lineas_de_trabajo_futuras}
 
 
-\bibliographystyle{plain}
-\bibliography{bibliografia}
-
+\printbibliography
 \end{document}
