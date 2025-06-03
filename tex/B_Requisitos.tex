@@ -1,40 +1,1943 @@
 \apendice{Especificación de Requisitos}
 
 \section{Introducción}
-
-Una muestra de cómo podría ser una tabla de casos de uso:
-
-% Caso de Uso 1 -> Consultar Experimentos.
-\begin{table}[p]
-	\centering
-	\begin{tabularx}{\linewidth}{ p{0.21\columnwidth} p{0.71\columnwidth} }
-		\toprule
-		\textbf{CU-1}    & \textbf{Ejemplo de caso de uso}\\
-		\toprule
-		\textbf{Versión}              & 1.0    \\
-		\textbf{Autor}                & Alumno \\
-		\textbf{Requisitos asociados} & RF-xx, RF-xx \\
-		\textbf{Descripción}          & La descripción del CU \\
-		\textbf{Precondición}         & Precondiciones (podría haber más de una) \\
-		\textbf{Acciones}             &
-		\begin{enumerate}
-			\def\labelenumi{\arabic{enumi}.}
-			\tightlist
-			\item Pasos del CU
-			\item Pasos del CU (añadir tantos como sean necesarios)
-		\end{enumerate}\\
-		\textbf{Postcondición}        & Postcondiciones (podría haber más de una) \\
-		\textbf{Excepciones}          & Excepciones \\
-		\textbf{Importancia}          & Alta o Media o Baja... \\
-		\bottomrule
-	\end{tabularx}
-	\caption{CU-1 Nombre del caso de uso.}
-\end{table}
+En este apéndice se desarrollarán todos los objetivos y los requisitos que tiene que cumplir la aplicación según lo que se ha establecido al principio del proyecto y todo lo nuevo que ha ido surgiendo mientras se realizaba el desarrollo.
 
 \section{Objetivos generales}
 
+Los objetivos generales que se acordaron al inicio del proyecto fueron:
+\begin{itemize}
+\tightlist
+\item
+  Desarrollar una aplicación web utilizando Angular como front-end, .NET como back-end.
+\item
+  Desarrollar una API para poder hacer la gestión de todos los datos y realizar operaciones sobre ellos.
+\item
+  Crear una base de datos MySQL en HeidiSQL para guardar los datos necesarios en tablas.
+\item
+  Implementar la autenticación de usuarios y restricciones por roles de cada usuario.
+\item
+  Integrar APIs para tener mapas interactivos en la web.
+\item
+  Integrar una forma de predecir los resultados de los próximos partidos.
+\end{itemize}
+
+
 \section{Catalogo de requisitos}
+En este apartado se enumeran todos los requisitos funcionales y no funcionales de todo el proyecto.
+
+\subsection{Requisitos funcionales}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{RF-1 Login de usuarios:} la aplicación tiene que ser capaz de permitir a los colegios y a los árbitros autenticarse.
+\item
+  \textbf{RF-2 Registro de usuarios:} la aplicación tiene que ser capaz de permitir a los colegios y a los árbitros registrarse y poder almacenar sus datos en la base de datos.
+\item
+  \textbf{RF-3 Cierre de sesión de usuarios:} la aplicación debe permitir al usuario que tenga la sesión iniciada con sus credenciales en ese momento cerrar esa sesión.
+\item
+  \textbf{RF-4 Gestión de rol:} la aplicación debe tener restricciones de acceso a la modificación de datos en función del rol con el que se tenga iniciada la sesión.
+\item
+  \textbf{RF-5 Navegación de la aplicación:} la aplicación debe tener un menú que permita al usuario navegar entre las diferentes ventanas que la componen.
+\item
+  \textbf{RF-6 Página de inicio de la aplicación:} la aplicación debe tener una página principal que muestre una buena descripción sobre la información que se puede encontrar y sea atractiva.
+\item
+  \textbf{RF-7 Predicción de resultados:} la aplicación debe tener un algoritmo que permita predecir los resultados de los partidos que están por jugarse.
+\item
+  \textbf{RF-8 Visualización de clasificación:} la aplicación debe contener una sección en la que se pueda ver la información sobre la clasificación general de cada equipo en la liga.
+\item
+  \textbf{RF-9 Gestión de Colegios:} la aplicación debe ser capaz de gestionar los colegios inscritos en la liga.
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{RF-9.1 Ver colegio:} el usuario debe poder ver la información detallada sobre el colegio.
+  \item
+    \textbf{RF-9.2 Añadir colegio:} el usuario que tenga el rol necesario debe ser capaz de agregar nuevos colegios con su nombre y detalles específicos.
+  \item
+    \textbf{RF-9.3 Editar colegio:} el usuario que tenga el rol necesario debe ser capaz de editar la información guardada de los colegios.
+  \item
+    \textbf{RF-9.4 Eliminar colegio:} el usuario que tenga el rol necesario debe ser capaz de eliminar la información guardada de los colegios.
+  \end{itemize}
+\item
+  \textbf{RF-10 Gestión de Jugadores:} la aplicación debe ser capaz de gestionar los jugadores inscritos en la liga.
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{RF-10.1 Ver jugador:} el usuario debe poder ver la información detallada sobre el jugador.
+  \item
+    \textbf{RF-10.2 Añadir jugador:} el usuario que tenga el rol necesario debe ser capaz de agregar nuevos jugadores con su nombre y detalles específicos.
+  \item
+    \textbf{RF-10.3 Editar jugador:} el usuario que tenga el rol necesario debe ser capaz de editar la información guardada de los jugadores.
+  \item
+    \textbf{RF-10.4 Eliminar jugador:} el usuario que tenga el rol necesario debe ser capaz de eliminar la información guardada de los jugadores.
+  \end{itemize}
+\item
+  \textbf{RF-11 Gestión de Partidos:} la aplicación debe ser capaz de gestionar los partidos que se juegan en la liga.
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{RF-11.1 Ver partido:} el usuario debe poder ver la información detallada sobre el partido.
+  \item
+    \textbf{RF-11.2 Añadir partido:} el usuario que tenga el rol necesario debe ser capaz de agregar nuevos partidos con sus equipos enfrentados y detalles específicos.
+  \item
+    \textbf{RF-11.3 Editar partido:} el usuario que tenga el rol necesario debe ser capaz de editar la información guardada de los partidos.
+  \item
+    \textbf{RF-11.4 Eliminar partido:} el usuario que tenga el rol necesario debe ser capaz de eliminar la información guardada de los partidos.
+  \end{itemize}
+\end{itemize}
+
+
+\subsection{Requisitos no funcionales}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{RNF-1 Usabilidad:} la aplicación debe tener una interfaz que sea visual e intuitiva, fácil de utilizar y con indicaciones de manejo de datos.
+\item
+  \textbf{RNF-2 Rendimiento:} la aplicación debe funcionar bajo tiempos viables, donde no haya largos tiempos de carga para ningún dispositivo.
+\item
+  \textbf{RNF-3 Responsividad:} la aplicación debe tener la capacidad de adaptarse a tamaños de pantalla diferentes.
+\item
+  \textbf{RNF-4 Escalabilidad:} la aplicación debe estar desarrollada de forma que puedan agregarse nuevas funcionalidades sin alterar las cargas de trabajo.
+\item
+  \textbf{RNF-5 Mantenibilidad:} la aplicación debe permitir realizar mantenimientos de manera simple y afectando al mínimo de componentes extra posible.
+\item
+  \textbf{RNF-6 Seguridad}: la aplicación debe proteger de la manera adecuada todos los datos que controla y sean sensibles como tokens de APIs o claves y credenciales de acceso además de proteger los datos de los usuarios.
+\item
+  \textbf{RNF-7 Disponibilidad}: la aplicación debe estar disponible para los usuarios todo el tiempo que sea posible, evitando tiempos de espera.
+\end{itemize}
+
+\newpage
 
 \section{Especificación de requisitos}
 
+En esta sección se desarrolla cada caso de uso y se muestra el diagrama de casos de uso final.
 
+\subsection{Casos de uso}
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-01}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Login de usuarios}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite a un usuario (colegio o arbitro) iniciar sesión para poder modificar información.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Tener credenciales validadas que permitan acceder.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario pincha en el botón de inicio de sesión.
+\item
+  El usuario rellena el formulario con sus credenciales correctas.
+\item
+  El usuario pulsa el botón de inicio de sesión.
+\item
+  El sistema valida las credenciales introducidas.
+\item
+  Se redirige al usuario a la página principal.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario ha accedido a su espacio.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Usuario inexistente en base de datos.
+\item
+  Credenciales introducidas no válidas.
+\item
+  Cuenta no activada.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-01 Login de usuarios.}
+\end{longtable}
+
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-02}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Registro de usuarios}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite a un usuario darse de alta introduciendo nombre, apellidos, contraseña y rol.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario no debe existir aún en la base de datos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario pincha en el botón de inicio de sesión.
+\item
+  El usuario pincha en la opción de registrarse.
+\item
+  El usuario rellena el formulario introduciendo su nombre, apellidos, contraseña y rol.
+\item
+  El sistema valida que el correo no exista y que todos los campos sean correctos.
+\item
+  Se guarda el nuevo usuario.
+\item
+  Se solicita validación de cuenta.
+\item
+  Se redirige al usuario a la página principal.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El nuevo usuario con las credenciales introducidas se ha guardado correctamente.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Usuario existente en base de datos.
+\item
+  Las contraseñas no coinciden.
+\item
+  Las contraseñas no tienen la seguridad suficiente.
+\item
+  Otras credenciales fallan.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-02 Registro de usuarios.}
+\end{longtable}
+
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-03}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Cierre de sesión de usuarios}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite a un usuario autenticado finalizar su sesión actual.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario debe tener una sesión activa.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario pincha en el botón de cerrar sesión.
+\item
+  El sistema lanza una modal de aviso pidiendo la confirmación de cierre de sesión.
+\item
+  El usuario pincha en el botón de confirmar cierre de sesión.
+\item
+  El sistema redirige al usuario a la página principal.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión del usuario tiene que quedar completamente cerrada.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Sesión no encontrada.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Media\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-03 Cierre de sesión de usuarios.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-04}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Gestión de rol}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite o bloquea a un usuario la realización de determinadas acciones en función del rol que tenga.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario debe estar registrado y con la sesión iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario pincha en el botón de inicio de sesión.
+\item
+  El usuario navega por las vistas de la aplicación.
+\item
+  Si el usuario tiene rol administrador, puede modificar todo y tiene visible toda la información.
+\item
+  Si el usuario tiene rol árbitro, puede ver y modificar toda la información sobre los partidos.
+\item
+  Si el usuario tiene rol colegio, puede ver y modificar toda la información relacionada sobre los colegios y los jugadores.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario solo ve las opciones y puede ejecutar las acciones permitidas por su rol.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Usuario inexistente.
+\item
+  Rol no validado.
+\item
+  Rol incorrecto.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-04 Gestión de rol.}
+\end{longtable}
+
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-05}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Navegación de la aplicación}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-5\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario navegar por las diferentes ventanas y componentes de la aplicación.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Se tiene que haber accedido a la página web.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  Si está navegando con un dispositivo con pantalla pequeña, pincha en el menú desplegable para ver las posibles ventanas accesibles.
+\item
+  Si está navegando en una ventana grande, se dirige a la barra superior de navegación donde se muestran todas las ventanas de la aplicación.
+\item
+  El usuario puede acceder a la página de inicio.
+\item
+  El usuario puede acceder a la página de la clasificación.
+\item
+  El usuario puede acceder a la página de los colegios.
+\item
+  El usuario puede acceder a la página de los jugadores.
+\item
+  El usuario puede acceder a la página de los partidos.
+\item
+  El usuario puede acceder a la página de inicio de sesión.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Se redirige al usuario a la ventana que haya seleccionado.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-05 Navegación de la aplicación.}
+\end{longtable}
+
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-06}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Página de inicio de la aplicación}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-6\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario ver el contenido y acceder a todas las diferentes ventanas de manera intuitiva.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario debe haber abierto la página web.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario tiene accesibles todas las ventanas de la aplicación desde una vista general en la página de inicio y puede ver el calendario y la información de la web.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Se redirige al usuario a la ventana que haya seleccionado.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Media\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-06 Página de inicio de la aplicación.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-07}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Predicción de resultados}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-7\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario acceder a un chatbot inteligente que predice resultados.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario debe haber accedido al chat de la web.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario pincha en el botón que activa el chatbot inteligente.
+\item
+  El usuario hace preguntas sobre el contenido de la liga de tenis.
+\item
+  El usuario recibe respuestas.
+\item
+  El usuario pregunta que partidos se jugarán próximamente.
+\item
+  El sistema envía su respuesta.
+\item
+  El usuario pregunta sobre cual es la predicción para uno de los partidos próximos.
+\item
+  El sistema responde con los datos desglosados de la predicción y devuelve porcentajes de victoria.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario recibe respuesta a sus preguntas y obtiene la predicción.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Preguntas mal formadas.
+\item
+  Tipos de pregunta no válidas.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Baja\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-07 Predicción de resultados.}
+\end{longtable}
+
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-08}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Visualización de la clasificación}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-8\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario ver la tabla de clasificación e interactuar con ella.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Haber accedido a la ventana de clasificación.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario pincha en el botón de clasificación de la barra de navegación.
+\item
+  El sistema redirige al usuario a la tabla de clasificación.
+\item
+  El usuario puede ver la tabla e interactuar con ella para visualizar todo el contenido que ofrece.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+El usuario ve la ventana de clasificación.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Se pincha en otro botón y redirige a otra ventana.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Media\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-08 Visualización de la clasificación.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-09}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Gestión de Colegios}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-9, RF-9.1, RF-9.2, RF-9.3, RF-9.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con el rol necesario gestionar la información de los colegios.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe haber colegios inscritos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario se dirige a la ventana de colegios.
+\item
+  El sistema devuelve la lista de todos los colegios.
+\item
+  El usuario elige que acción realizar.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La tabla de clasificación se muestra correctamente.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al cargar la tabla.
+\item
+  Se ha pinchado en una ventana diferente.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-09 Gestión de Colegios.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-10}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Ver colegio}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-9.1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario visualizar la información de cada colegio.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe haber colegios inscritos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de colegios.
+\item
+  El usuario pincha en el nombre del colegio para expandir su información.
+\item
+  El sistema devuelve la tarjeta de información del colegio.
+\item
+  El usuario visualiza la información.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La información detallada del colegio se muestra correctamente.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al cargar la información.
+\item
+  No existe el colegio.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-10 Ver colegio.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-11}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Añadir colegio}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-9.2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios añadir un nuevo colegio.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de colegios.
+\item
+  El usuario pincha en el botón de añadir colegio.
+\item
+  El sistema muestra el formulario con los datos necesarios para añadir el nuevo colegio.
+\item
+  El usuario introduce la información.
+\item
+  El usuario pincha en el botón de guardar.
+\item
+  El sistema lanza la tarjeta de aviso de nuevo colegio agregado.
+\item
+  El usuario puede ver el nuevo colegio en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe aparecer el nuevo colegio añadido en la lista de colegios.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al guardar la información.
+\item
+  Datos introducidos incorrectos.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-11 Añadir colegio.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-12}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Editar colegio}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-9.3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios editar la información de un colegio.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de colegios.
+\item
+  El usuario pincha en el botón de editar colegio.
+\item
+  El sistema muestra el formulario con los datos que se pueden editar para ese colegio seleccionado.
+\item
+  El usuario edita la información.
+\item
+  El usuario pincha en el botón de guardar.
+\item
+  El sistema lanza la tarjeta de aviso de datos del colegio modificados.
+\item
+  El usuario puede ver el colegio con los datos nuevos en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe aparecer el colegio con los datos modificados en la lista de colegios.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al modificar la información.
+\item
+  Datos modificados incorrectos.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-12 Editar colegio.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-13}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Eliminar colegio}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-9.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios eliminar un colegio.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de colegios.
+\item
+  El usuario pincha en el botón de eliminar colegio.
+\item
+  El sistema muestra la modal de aviso de eliminación permanente de los datos.
+\item
+  El usuario pincha en el botón de aceptar.
+\item
+  El sistema lanza la tarjeta de aviso de datos del colegio eliminados.
+\item
+  El usuario ya no puede ver la información de ese colegio en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe desaparecer el colegio de la lista de colegios.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al eliminar la información.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-13 Eliminar colegio.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-14}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Gestión de Jugadores}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-10, RF-10.1, RF-10.2, RF-10.3, RF-10.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con el rol necesario gestionar la información de los jugadores.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe haber jugadores inscritos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario se dirige a la ventana de jugadores.
+\item
+  El sistema devuelve la lista de todos los jugadores.
+\item
+  El usuario elige que acción realizar.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La lista de jugadores se muestra correctamente.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al cargar la lista.
+\item
+  Se ha pinchado en una ventana diferente.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-14 Gestión de Jugadores.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-15}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Ver jugador}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-10.1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario visualizar la información de cada jugador.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe haber jugadores inscritos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de jugadores.
+\item
+  El usuario pincha en el nombre del jugador para expandir su información.
+\item
+  El sistema devuelve la tarjeta de información del jugador.
+\item
+  El usuario visualiza la información.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La información detallada del jugador se muestra correctamente.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al cargar la información.
+\item
+  No existe el jugador.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-15 Ver jugador.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-16}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Añadir jugador}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-10.2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios añadir un nuevo jugador.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de jugadores.
+\item
+  El usuario pincha en el botón de añadir jugador.
+\item
+  El sistema muestra el formulario con los datos necesarios para añadir el nuevo jugador.
+\item
+  El usuario introduce la información.
+\item
+  El usuario pincha en el botón de guardar.
+\item
+  El sistema lanza la tarjeta de aviso de nuevo jugador agregado.
+\item
+  El usuario puede ver el nuevo jugador en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe aparecer el nuevo jugador añadido en la lista de jugadores.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al guardar la información.
+\item
+  Datos introducidos incorrectos.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-16 Añadir jugador.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-17}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Editar jugador}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-10.3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios editar la información de un jugador.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de jugadores.
+\item
+  El usuario pincha en el botón de editar jugador.
+\item
+  El sistema muestra el formulario con los datos que se pueden editar para ese jugador seleccionado.
+\item
+  El usuario edita la información.
+\item
+  El usuario pincha en el botón de guardar.
+\item
+  El sistema lanza la tarjeta de aviso de datos del jugador modificados.
+\item
+  El usuario puede ver el jugador con los datos nuevos en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe aparecer el jugador con los datos modificados en la lista de jugadores.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al modificar la información.
+\item
+  Datos modificados incorrectos.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-17 Editar jugador.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-18}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Eliminar jugador}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-10.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios eliminar un jugador.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de jugadores.
+\item
+  El usuario pincha en el botón de eliminar jugador.
+\item
+  El sistema muestra la modal de aviso de eliminación permanente de los datos.
+\item
+  El usuario pincha en el botón de aceptar.
+\item
+  El sistema lanza la tarjeta de aviso de datos del jugador eliminados.
+\item
+  El usuario ya no puede ver la información de ese jugador en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe desaparecer el jugador de la lista de jugadores.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al eliminar la información.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-18 Eliminar jugador.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-19}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Gestión de partidos}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-11, RF-11.1, RF-11.2, RF-11.3, RF-11.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con el rol necesario gestionar la información de los partidos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe haber partidos creados.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario entra en la aplicación.
+\item
+  El usuario se dirige a la ventana de partidos.
+\item
+  El sistema devuelve la lista de todos los partidos.
+\item
+  El usuario elige que acción realizar.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La lista de partidos se muestra correctamente.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al cargar la lista.
+\item
+  Se ha pinchado en una ventana diferente.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-19 Gestión de partidos.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-20}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Ver partido}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-11.1\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario visualizar la información de cada partido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe haber partido creados.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de partidos.
+\item
+  El usuario pincha en la fecha del partido para expandir su información.
+\item
+  El sistema devuelve la tarjeta de información del partido.
+\item
+  El usuario visualiza la información.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La información detallada del partido se muestra correctamente.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al cargar la información.
+\item
+  No existe el partido.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-20 Ver partido.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-21}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Añadir partido}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-11.2\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios añadir un nuevo partido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de partidos.
+\item
+  El usuario pincha en el botón de añadir partido.
+\item
+  El sistema muestra el formulario con los datos necesarios para añadir el nuevo partido.
+\item
+  El usuario introduce la información.
+\item
+  El usuario pincha en el botón de guardar.
+\item
+  El sistema lanza la tarjeta de aviso de nuevo partido agregado.
+\item
+  El usuario puede ver el nuevo partido en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe aparecer el nuevo partido añadido en la lista de partidos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al guardar la información.
+\item
+  Datos introducidos incorrectos.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-21 Añadir partido.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-22}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Editar partido}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-11.3\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios editar la información de un partido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de partidos.
+\item
+  El usuario pincha en el botón de editar partido.
+\item
+  El sistema muestra el formulario con los datos que se pueden editar para ese partido seleccionado.
+\item
+  El usuario edita la información.
+\item
+  El usuario pincha en el botón de guardar.
+\item
+  El sistema lanza la tarjeta de aviso de datos del partido modificados.
+\item
+  El usuario puede ver el partido con los datos nuevos en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe aparecer el partido con los datos modificados en la lista de partidos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al modificar la información.
+\item
+  Datos modificados incorrectos.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-22 Editar partido.}
+\end{longtable}
+
+\newpage
+
+\begin{longtable}[H]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.23\columnwidth}\raggedright\strut
+\textbf{CU-23}\strut
+\end{minipage} & \begin{minipage}[b]{0.71\columnwidth}\raggedright\strut
+\textbf{Eliminar partido}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Versión}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+1.0\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Autor}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Ignacio Zaldo González\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Requisitos asociados}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+RF-11.4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Descripción}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Permite al usuario con los roles necesarios eliminar un partido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Precondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+La sesión debe estar iniciada con un rol válido.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Acciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  El usuario se dirige a la ventana de partidos.
+\item
+  El usuario pincha en el botón de eliminar partido.
+\item
+  El sistema muestra la modal de aviso de eliminación permanente de los datos.
+\item
+  El usuario pincha en el botón de aceptar.
+\item
+  El sistema lanza la tarjeta de aviso de datos del partido eliminados.
+\item
+  El usuario ya no puede ver la información de ese partido en la lista.
+\end{enumerate}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Postcondición}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Debe desaparecer el partido de la lista de partidos.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Excepciones}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+\begin{itemize}
+\tightlist
+\item
+  Error al eliminar la información.
+\end{itemize}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.23\columnwidth}\raggedright\strut
+\textbf{Importancia}\strut
+\end{minipage} & \begin{minipage}[t]{0.71\columnwidth}\raggedright\strut
+Alta\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\caption{CU-23 Eliminar partido.}
+\end{longtable}
