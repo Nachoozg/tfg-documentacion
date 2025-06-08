@@ -9,6 +9,8 @@
 \usepackage{microtype}
 \usepackage{placeins}
 
+\usepackage[numbers,sort]{natbib}
+
 \RequirePackage{booktabs}
 \RequirePackage[table]{xcolor}
 \RequirePackage{xtab}
@@ -18,9 +20,11 @@
 \RequirePackage[table]{xcolor}
 \RequirePackage{xtab}
 \RequirePackage{multirow}
-
 \usepackage{longtable}
 \usepackage{xcolor}
+
+\usepackage{pdflscape}
+
 
 % Links
 \PassOptionsToPackage{hyphens}{url}\usepackage[colorlinks]{hyperref}
@@ -407,9 +411,12 @@
 \include{./tex/C_Diseno}
 \include{./tex/D_Manual_programador}
 \include{./tex/E_Manual_usuario}
+\include{./tex/F_Sostenibilizacion_Curricular}
 
 
-\bibliographystyle{plain}
+
+
 \bibliography{bibliografiaAnexos}
+\bibliographystyle{plainnat}
 
 \end{document}

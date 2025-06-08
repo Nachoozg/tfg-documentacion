@@ -2,10 +2,178 @@
 
 \section{Introducción}
 
+En este apéndice se van a definir las estructuras de diseño que se han utilizado en el proyecto. Se definen los datos que maneja la aplicación, la arquitectura, el diseño de las interfaces, etc.
+
 \section{Diseño de datos}
+
+Las entidades o colecciones que se manejan en la aplicación son:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Usuario}: En esta colección se almacenan los datos de los usuarios registrados en la aplicación, contiene los siguientes datos: id, nombre, apellidos, mail, contraseña, id del rol y el campo que indica si el usuario está autorizado o no.
+\item
+  \textbf{Rol}: En esta colección se guarda la información de los diferentes roles que tenemos en la aplicación, los datos en específico son el id y el nombre del rol.
+\item
+  \textbf{Colegio}: Se guarda la información de los colegios inscritos en la liga, en ella, se encuentran los campos de: id, nombre del colegio, número de jugadores y la imagen del colegio.
+\item
+  \textbf{Jugador}: Guarda los datos de los jugadores inscritos en la liga, se divide en varios campos, que son: id, nombre del jugador, apellidos, edad, id del colegio al que se asigna ese jugador y la imagen del jugador.
+\item
+  \textbf{Partido}: Esta colección almacena los datos de los partidos que se juegan durante la liga, tiene los campos id, fecha del partido, lugar (en forma de texto), detalles, id del colegio local, id del colegio visitante, resultado del colegio local, resultado del colegio visitante, latitud y longitud marcadas de donde se juega el partido, id del jugador que juega para el colegio local y el id del jugador que juega para el colegio visitante.
+\end{itemize}
+
+\subsection{Diagrama E/R}
+
+\imagen{diagramaEntRel.png}{Diagrama E/R}{1}
+
+\newpage
 
 \section{Diseño procedimental}
 
+En esta sección se enseñan los detalles de la ejecución de la aplicación.
+\\
+\\
+
+\textbf{Login y Registro}
+
+Diagrama de secuencia que muestra todos los pasos que realiza el programa cuando un usuario se quiere registrar o iniciar sesión en la aplicación.
+\\
+\\
+
+\imagen{secuenciaLogin.png}{Diagrama de secuencia - Login y Registro}{1}
+
+\newpage
+
+\textbf{Predicción de partidos y chatbot}
+
+Diagrama de secuencia que muestra todos los pasos que realiza el programa cuando un usuario pregunta cosas al chatbot y cuando pregunta por la predicción de un partido.
+
+\imagen{secuenciaPrediccion.drawio.png}{Diagrama de secuencia - Predicción de partidos y chatbot}{1.1}
+
+\newpage
+
+\textbf{Navegación por la interfaz}
+
+Diagrama de secuencia que muestra todos los pasos que realiza el programa para navegar entre las diferentes ventanas de la aplicación.
+
+\imagen{secuenciaClasificacion.png}{Diagrama de secuencia - Navegación por la interfaz}{1.1}
+
+\newpage
+
+\textbf{Gestión de elementos}
+
+Diagrama de secuencia que muestra todos los pasos que realiza el programa para hacer la gestión (ver, editar, añadir o eliminar) de datos tanto de los colegios, como de los jugadores y de los partidos.
+
+\imagen{secuenciaGestion.png}{Diagrama de secuencia - Gestión de elementos}{1.1}
+
+\newpage
+
 \section{Diseño arquitectónico}
 
+En este proyecto se ha utilizado Angular como framework, por lo que se ha implementado un diseño arquitectónico que está basado en los componentes de Angular con el enfoque MVVM (Model-View-ViewModel) que permite organizar con separación la lógica de la interfaz de usuario.
 
+La arquitectura de Angular está basada en módulos, que pueden contener componentes, servicios, módulos y otros tipos de bloques menos comunes.
+
+Esta arquitectura tiene algunos puntos clave:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{NgModules}: agrupan las funcionalidades relacionadas (componentes, directivas, servicios, etc.) en un solo bloque.
+\item
+  \textbf{Componentes}: son la unidad básica de interfaz de usuario y de la lógica de presentación.
+\item
+  \textbf{Servicios}: son clases que encapsulan toda la lógica y acceso a APIs.
+\item
+  \textbf{Directivas}: clases que permiten modificar la apariencia y los datos.
+\item
+  \textbf{Pipes}: son funciones que transforman los valores antes de mostrarlos.
+\item
+  \textbf{Enrutamiento o Routing}: sistema de mapeo  de rutas con url a componentes específicos, permitiendo la navegación entre ventanas de la aplicación.
+\end{itemize}
+
+\subsection{MVVM (Model-View-ViewModel)}
+
+El patrón MVVM es una arquitectura de diseño que facilita la separación de las responsabilidades en las aplicaciones, en concreto afecta más en aquellas que usan enlaces entre la interfaz de usuario y la lógica (como es el caso de Angular). \cite{web:mvvm}
+
+Los componentes del patrón son:
+
+\begin{itemize}
+    \item
+        \textbf{Modelo (Model)}:
+        \begin{itemize}
+            \item Define las entidades y las estructuras de datos.
+            \item No sabe nada de la interfaz.
+            \item Encapsula la lógica.
+        \end{itemize}
+    \item
+        \textbf{Modelo de vista (ViewModel)}:
+        \begin{itemize}
+            \item Implementa comandos que la vista invoca.
+            \item Se suscribe al modelo y notifica cambios a la vista.
+        \end{itemize}
+    \item
+        \textbf{Vista (View)}:
+        \begin{itemize}
+            \item Define la interfaz de usuario.
+            \item Recibe eventos del usuario y llama a comandos del ViewModel.
+            \item No tiene la lógica, solo la presentación.
+        \end{itemize}
+\end{itemize}
+
+\imagen{mvvm.png}{Diagrama del patrón MVVM \cite{img:mvvm-logo}}{1}
+
+En la imagen se puede ver un esquema con las interacciones entre las partes del patrón, indicando que el elemento mediador entre la vista y el modelo es el ViewModel.
+
+\newpage
+
+\section{Diseño de interfaces}
+
+Al comenzar con el desarrollo del proyecto, se crearon unos esquemas o prototipos de las interfaces que se iban a tener en cuenta en un principio. Se realizaron en la herramienta Paint de Microsoft.
+
+
+\imagen{prototipo1.png}{Prototipo de la página de inicio}{0.8}
+
+\imagen{prototipoClasificacion.png}{Prototipo de la tabla de clasificación}{0.8}
+
+\imagen{prototipo2.png}{Prototipo de la página del listado de colegios}{0.8}
+
+\imagen{prototipoDetalles.png}{Prototipo de la página de los detalles del jugador}{0.8}
+
+\imagen{prototipoInicio.png}{Prototipo de la página inicio de sesión}{0.8}
+
+El logotipo que se utiliza al lado del botón de inicio y en la miniatura de la ventana de la web, también se realizó con Paint.
+
+\imagen{pelotaPaint.png}{Diseño del logotipo de la aplicación}{0.5}
+
+Cuando el desarrollo del proyecto cogía forma, se modificaron las interfaces para hacer que todo el diseño fuera más amigable, más atractivo y sobre todo, más intuitivo. Para realizar esa evolución, se utilizaron las herramientas de Bootstrap, Angular Materials y programación en css para estilizar todo.
+
+El resultado final es el siguiente:
+
+\imagen{pantallaInicioFinal.png}{Interfaz final pantalla inicial}{1.1}
+
+\imagen{clasificacionComprimida.png}{Interfaz final pantalla clasificación comprimida}{1.1}
+
+\imagen{clasificacionExtendida.png}{Interfaz final pantalla clasificación extendida}{1.2}
+
+\imagen{listadoFinalVista.png}{Interfaz final listado (sin sesión iniciada)}{1.2}
+
+\imagen{listadoFinalVistaAdmin.png}{Interfaz final listado (con sesión iniciada)}{1.1}
+
+\imagen{loginFinalVista.png}{Interfaz final del inicio de sesión}{0.8}
+
+\imagen{vistaChatFinal.png}{Interfaz del chatbot inteligente}{0.6}
+
+\imagen{agregarCFinal.png}{Interfaz de formularios de agregar}{1.1}
+
+\imagen{verColeFinal.png}{Interfaz de la vista en detalle de los colegios}{1.1}
+
+\imagen{verJugaFinal.png}{Interfaz de la vista en detalle de los jugadores}{1.1}
+
+\imagen{verPartiFinal.png}{Interfaz de la vista en detalle de los partidos}{1.1}
+
+\imagen{modalMapafinal.png}{Interfaz de la vista del mapa interactivo}{1.1}
+
+\imagen{agregarPFinalDesdeCalendario.png}{Interfaz del formulario de agregar partidos en forma de modal}{1.1}
+
+\imagen{vistamovilFinal.png}{Muestra de interfaz adaptada a pantallas pequeñas}{0.4}

@@ -2,10 +2,117 @@
 
 \section{Introducción}
 
+En este anexo se redacta la documentación técnica de programación del proyecto. Se detalla toda la estructura, los manuales de instalación, configuraciones y requisitos para ejecutar correctamente el proyecto.
+
 \section{Estructura de directorios}
+
+En este caso, tenemos dos repositorios diferentes, uno para el front-end en Angular \cite{web:repo-front} y otro para el back-end en .NET \cite{web:repo-back}. Esto se ha hecho así mirando como se hacen los proyectos profesionales con equipos dedicados a cada parte del desarrollo de las aplicaciones web.
+
+Con esta separación se mejora la mantenibilidad y la escalabilidad porque el historial de cambios realizados es más claro, se pueden refactorizar componentes sin afectar a la otra parte implicada en el proyecto y se pueden hacer despliegues independientes, cuando la aplicación entra en desarrollos más profesionales, si se detectan fallos por ejemplo en la interfaz de usuario, se puede corregir solamente el repositorio de Angular para subirlo de nuevo a producción sin tener que alterar el funcionamiento de la lógica de la aplicación.
+
+\newpage
+
+La estructura de los directorios de la parte de Angular es:
+\begin{itemize}
+\tightlist
+    \item
+    \textbf{/.node modules:} Contiene todos módulos y los paquetes de las librerías que se han utilizado.
+    \item 
+    \textbf{/src:} Es el directorio principal que contiene todo el código fuente del front-end. 
+    \item
+    \textbf{/src/app:} Contiene todo el núcleo de la aplicación, entre ello están los componentes, módulos, servicios y routing.
+    \item
+    \textbf{/src/app/(componentes):} Contiene el código html, css y typescript de cada componente que se haya creado.
+    \item
+    \textbf{/src/app/auth:} Contiene el servicio de autentificación de usuarios para manejar los inicios de sesión y registros.
+    \item
+    \textbf{/src/app/interfaces:} En él se encuentran las interfaces que tienen los datos de cada tipo de componente.
+    \item
+    \textbf{/src/app/services:} Contiene los diferentes servicios que sirven para conectar los elementos del código con los endpoints del back-end.
+    \item
+    \textbf{/src/app/app-routing:} Contiene el fichero que define las rutas por las que se puede navegar en la aplicación.
+    \item
+    \textbf{/src/app/app-component:} Contiene el fichero con la estructura de los componentes que se ven en la aplicación y el orden en el que se muestran.
+    \item
+    \textbf{/src/app/app-module:} Contiene el fichero con toda la definición de módulos y componentes creados.
+    \item
+    \textbf{/src/assets:} Tiene todas las imágenes y logotipos que se muestran en la aplicación.
+\end{itemize}
+
+Por otro lado, la estructura de carpetas en .NET es:
+\begin{itemize}
+\tightlist
+    \item 
+    \textbf{/wwwroot:} Contiene las imagenes que se suben al servidor de .NET para mostrarse en la web.
+    \item 
+    \textbf{/Controllers:} Contiene los controladores de cada tipo de dato que queremos manejar en la aplicación.
+    \item 
+    \textbf{/Dtos:} Contiene controladores con información modificada para obtener datos más específicos y objetos de transmisión de datos.
+    \item 
+    \textbf{/Models/DbModels:} Contiene todos los modelos en los que se añaden los campos específicos de cada dato en la base de datos.
+    \item 
+    \textbf{/Services:} Tiene el servicio que define con que tipo de datos se van a poder hacer operaciones.
+\end{itemize}
 
 \section{Manual del programador}
 
-\section{Compilación, instalación y ejecución del proyecto}
+En este manual se aporta la información necesaria con detalles para que los programadores que quieran seguir con el desarrollo del proyecto tengan más facilidades. Se muestra la instalación, configuración y ejecución.
+
+\textbf{Entornos de desarrollo}
+
+Para poder trabajar en el desarrollo, se tienen que tener instalados varios programas.
+
+\begin{itemize}
+\tightlist
+    \item 
+    \textbf{HeidiSQL:} Es un gestor de bases de datos. Para descargarlo hay que acceder a la página oficial \href{https://www.heidisql.com/}{HeidiSQL}, ejecutar el instalador y seguir las instrucciones que aparecen en pantalla.
+    \item 
+    \textbf{Visual Studio Code:} Es un IDE (Entorno de Desarrollo Integrado) y en este caso es el que se ha utilizado para el desarrollo del front-end en Angular. Para descargarlo hay que acceder a la página oficial \href{https://code.visualstudio.com/}{Visual Studio Code}, ejecutar el instalador y seguir las instrucciones que aparecen en pantalla.
+    \item 
+    \textbf{Visual Studio 2022:} Es un IDE que en este caso es el que se ha utilizado para desarrollar el back-end en .NET. Para obtenerlo hay que ir a \href{https://visualstudio.microsoft.com/es/vs/}{Visual Studio 2022}, descargarlo y ejecutar el instalador. Hay que seguir los pasos que indica en pantalla y una vez instalado, darle a abrir.
+\end{itemize}
+
+Una vez abierto Visual Studio 2022, en su instalador interno hay que añadir estas opciones:
+
+\imagen{1visual.png}{Instalación interna Visual Studio 2022 - 1}{0.25}
+
+\imagen{2visual.png}{Instalación interna Visual Studio 2022 - 2}{0.3}
+
+\imagen{3visual.png}{Instalación interna Visual Studio 2022 - 3}{0.6}
+
+\begin{itemize}
+\tightlist
+    \item 
+    \textbf{Node.js y npm:} Node.js es un entorno de ejecución para JavaScript y npm es el gestor de paquetes de Node.js. Para instalar Node.js y npm: \href{https://nodejs.org/es}{Node.js}, ejecutar el instalador y seguir las instrucciones que aparecen en pantalla.
+    \item 
+    \textbf{Angular:} Para instalar Angular, tenemos que abrir la terminal y poner el siguiente comando: npm install -g @angular/cli.
+\end{itemize}
+
+\textbf{Clonar repositorios}
+
+Para poder conseguir los códigos de la aplicación hay que clonar los repositorios.
+
+git clone https://github.com/Nachoozg/tfg.git
+
+git clone https://github.com/Nachoozg/tfg-back.git
+
+\newpage
+
+\textbf{Instalar dependencias de Angular}
+
+Abrir una terminal y dirigirse a la carpeta donde hemos descargado el proyecto de Angular, una vez ahí, poner el comando: npm install, con el que instalaremos los node modules.
+
+\textbf{Ejecución del proyecto en local}
+
+Se abren los proyectos en los editores de texto instalados. Angular en Visual Studio Code y .NET en Visual Studio 2022.
+
+Para correr Angular tenemos que abrir la consola en la ruta del proyecto y poner el comando ng serve -o.
+
+Para correr el .NET tenemos que ir a la parte de arriba de Visual Studio y pinchar en ejecutar, con eso se abrirá una web con los endpoints en Swagger.
+
+
+Por otro lado, el proyecto está ejecutando continuamente en un entorno de producción, ya que está alojado en una máquina EC2 de AWS (Amazon web Services), pero para modificar esa ejecución se ha de modificar el código, después pasarlo a la máquina y ejecutarlo para que vuelva a correr esa instancia.
 
 \section{Pruebas del sistema}
+
+Para probar la aplicación y hacer algunas pruebas de funcionamiento, lo que se ha hecho ha sido dejar la aplicación abierta a personas que no son familiares con ella para ver si es sencillo de utilizarla o si se encuentra alguna complicación en su uso. Los errores o puntos de la aplicación que eran más difíciles de entender y utilizar, se han ido adaptando hasta que el diseño ha llegado a un punto en el que es adecuado para todo tipo de usuarios. Este tipo de pruebas que se han realizado o pruebas similares se llaman Crowdtesting.
